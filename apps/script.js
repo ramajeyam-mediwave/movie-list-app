@@ -90,7 +90,6 @@ function makeMovieDiv(movie) {
   }
 }
 function removeMovie(movieId) {
-
   const filteredArray = favMovies.filter((movie) => movie.id != movieId);
   favMovies = filteredArray;
   updateMovieListUI();
@@ -130,17 +129,22 @@ function Form() {
   const form = document.querySelector("#add-movie-form");
   form.addEventListener("submit", function (e) {
     e.preventDefault();
+
     const name = document.querySelector("#movie-name").value;
     const year = document.querySelector("#movie-year").value;
 
-    const movie = {
-      id: new Date().getTime(),
-      title: name,
-      releaseDate: year,
-      isEdit: false,
-    };
-    addMovie(movie);
-    clear();
+    if (!name || !year) {
+      validateForm();
+    } else {
+      const movie = {
+        id: new Date().getTime(),
+        title: name,
+        releaseDate: year,
+        isEdit: false,
+      };
+      addMovie(movie);
+      clear();
+    }
   });
 }
 function clear() {
@@ -162,6 +166,13 @@ function getFromLocalStorage() {
   }
 }
 
+function validateForm() {
+  let x = document.forms["add-movie-form"]["movie-year"].value;
+  if (x == "") {
+    alert("Name must be filled out");
+    return false;
+  }
+}
 // alternativemethod
 //   function clear(){
 //   var inputElement = document.getElementById("movie-name");

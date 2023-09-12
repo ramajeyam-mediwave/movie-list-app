@@ -1,32 +1,42 @@
 body {
-    font-family: sans-serif;
-    background-color:orange;
-    background-repeat: no-repeat;
-    background-size: cover;
-    
-   
+  font-family: sans-serif;
+  background-color: orange;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.movie-card {
+  border: 1px solid white;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+#app {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+#add-movie-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  gap: 10px;
+  text-align: center;
+  justify-content: center;
+}
+
+@media (max-width: 766px) {
+  #app {
+    grid-template-columns: 1fr 1fr 1fr;
   }
-  .movie-card {
-    border: 1px solid white;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    text-align: center;
+}
+@media (max-width: 480px) {
+  #app {
+    grid-template-columns: 1fr 1fr;
   }
-  #app{
-    display: grid;
-    grid-template-columns: 1fr 1fr ;
-    gap: 30px;
+}
+@media (max-width: 320px) {
+  #app {
+    grid-template-columns: 1fr;
   }
-  #add-movie-form{
-    display: flex;
-    flex-direction: column;
-    
-    vertical-align:middle;
-    
-    padding: 20px;
-    gap: 10px;
-    width: 180px;
-    
-  }
-  #add-movie-form input{
-   }
+}
