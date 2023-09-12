@@ -1,26 +1,32 @@
 body {
     font-family: sans-serif;
-    background: linear-gradient(45deg ,yellow ,orange);
+    background-color:orange;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100vh;
+    
    
   }
   .movie-card {
-    border: 1px solid black;
+    border: 1px solid white;
     border-radius: 5px;
     margin-bottom: 10px;
     text-align: center;
   }
   #app{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr ;
+    grid-template-columns: 1fr 1fr ;
     gap: 30px;
   }
   #add-movie-form{
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    
+    vertical-align:middle;
+    
     padding: 20px;
-    gap: 30px;
+    gap: 10px;
+    width: 180px;
+    
   }
   #add-movie-form input{
    }
