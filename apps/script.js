@@ -22,6 +22,8 @@ function makeMovieDiv(movie) {
     const div = document.createElement("div");
     div.setAttribute("class", "movie-card");
 
+      //Creating input section by using the java script
+
     const nameInput = document.createElement("input");
     nameInput.setAttribute("type", "text");
     nameInput.setAttribute("name", `edit-${movie.id}-name`);
@@ -36,9 +38,12 @@ function makeMovieDiv(movie) {
     yearInput.setAttribute("id", `edit-${movie.id}-year`);
     yearInput.setAttribute("value", movie.releaseDate);
 
+    //creating button by using java script
+
     const button = document.createElement("button");
     button.innerText = "Update movie";
 
+    //Update the card
     button.addEventListener("click", function () {
       const newTitle = document.querySelector(`#edit-${movie.id}-name`).value;
       const newYear = document.querySelector(`#edit-${movie.id}-year`).value;
@@ -60,7 +65,7 @@ function makeMovieDiv(movie) {
       }}
     }
     });
-
+// appeding to the main div
     div.appendChild(nameInput);
     div.appendChild(yearInput);
     div.appendChild(button);
@@ -132,6 +137,8 @@ function updateMovieListUI() {
     appendToApp(movieDiv);
   }
 }
+
+// form
 function Form() {
   const form = document.querySelector("#add-movie-form");
   form.addEventListener("submit", function (e) {
@@ -144,15 +151,17 @@ function Form() {
     
   });
 }
+// function to clear the input tag after the submition
 function clear() {
   document.querySelector("#add-movie-form").reset();
 }
-
+//save to local
 function saveToLocalStorage() {
   const str = JSON.stringify(favMovies);
   localStorage.setItem("my-movie-list", str);
   localStorage.setItem("favMovies[toEditIndex]", str);
 }
+//get from local
 
 function getFromLocalStorage() {
   const str = localStorage.getItem("my-movie-list");
@@ -162,7 +171,7 @@ function getFromLocalStorage() {
     favMovies = JSON.parse(str);
   }
 }
-
+//function for validation
 function validateForm(name , year) {
   
   if (!name || !year) {
@@ -193,6 +202,9 @@ function validateForm(name , year) {
 
 // }
 
+
+
+//function call
 getFromLocalStorage();
 updateMovieListUI();
 Form();
