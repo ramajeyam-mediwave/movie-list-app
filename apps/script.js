@@ -1,22 +1,21 @@
-// let favMovies = [
-//     {
-//       id: "1694415809280",
-//       title: "spider-man",
-//       releaseDate: "2005",
-//     },
-//     {
-//       id: "1694415816447",
-//       title: "spider-man-2",
-//       releaseDate: "2010",
-//     },
-//     {
-//       id: "1694415816450",
-//       title: "spider-man-3",
-//       releaseDate: "2015",
-//     },
-//   ];
+let favMovies = [
+    {
+      id: "1694415809280",
+      title: "spider-man",
+      releaseDate: "2005",
+    },
+    {
+      id: "1694415816447",
+      title: "spider-man-2",
+      releaseDate: "2010",
+    },
+    {
+      id: "1694415816450",
+      title: "spider-man-3",
+      releaseDate: "2015",
+    },
+  ];
 
-let favMovies = [];
 
 function makeMovieDiv(movie) {
   if (movie.isEdit) {
@@ -43,7 +42,14 @@ function makeMovieDiv(movie) {
     button.addEventListener("click", function () {
       const newTitle = document.querySelector(`#edit-${movie.id}-name`).value;
       const newYear = document.querySelector(`#edit-${movie.id}-year`).value;
-
+      if (!newTitle || !newYear) {
+        alert("Enter all fields");
+      } else {
+        if (newYear > new Date().getFullYear() ) {
+          alert("enter correct year");
+        } else if (newYear < 1895) {
+          alert("enter correct year");
+        } else {
       const toUpdateIndex = favMovies.findIndex((m) => m.id == movie.id);
       if (toUpdateIndex != -1) {
         favMovies[toUpdateIndex]["title"] = newTitle;
@@ -51,7 +57,8 @@ function makeMovieDiv(movie) {
         favMovies[toUpdateIndex]["isEdit"] = false;
         updateMovieListUI();
         saveToLocalStorage();
-      }
+      }}
+    }
     });
 
     div.appendChild(nameInput);
@@ -132,19 +139,9 @@ function Form() {
 
     const name = document.querySelector("#movie-name").value;
     const year = document.querySelector("#movie-year").value;
-
-    if (!name || !year) {
-      validateForm();
-    } else {
-      const movie = {
-        id: new Date().getTime(),
-        title: name,
-        releaseDate: year,
-        isEdit: false,
-      };
-      addMovie(movie);
-      clear();
-    }
+    //passing argument
+    validateForm(name , year)
+    
   });
 }
 function clear() {
@@ -160,17 +157,31 @@ function saveToLocalStorage() {
 function getFromLocalStorage() {
   const str = localStorage.getItem("my-movie-list");
   if (!str) {
-    favMovies = [];
+   return favMovies;
   } else {
     favMovies = JSON.parse(str);
   }
 }
 
-function validateForm() {
-  let x = document.forms["add-movie-form"]["movie-year"].value;
-  if (x == "") {
-    alert("Name must be filled out");
-    return false;
+function validateForm(name , year) {
+  
+  if (!name || !year) {
+    alert("Enter all fields");
+  } else {
+    if (year > new Date().getFullYear() ) {
+      alert("enter correct year");
+    } else if (year < 1895) {
+      alert("enter correct year");
+    } else {
+      const movie = {
+        id: new Date().getTime(),
+        title: name,
+        releaseDate: year,
+        isEdit: false,
+      };
+      addMovie(movie);
+      clear();
+    }
   }
 }
 // alternativemethod
